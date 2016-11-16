@@ -1,11 +1,9 @@
 'use strict';
 
-const express = require('express');
 const mongoose = require('mongoose');
 const Contact = require('../model/Contact');
-const router = express.Router();
 
-router.route('/:id').delete((req, res) => {
+module.exports = (req, res) => {
   const _id = req.params.id;
 
   Contact.findOneAndRemove({ _id }, (err, contact) => {
@@ -19,6 +17,4 @@ router.route('/:id').delete((req, res) => {
 
     res.json({ message: `Contact ${contact._id} as been deleted` });
   })
-});
-
-module.exports = router;
+};
